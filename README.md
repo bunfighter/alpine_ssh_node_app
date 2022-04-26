@@ -1,2 +1,2 @@
 # alpine_ssh_node_app
-Docker image with ssh and a nodejs application
+Docker image based on Alpine with sshd (public key and a nodejs application
