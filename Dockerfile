@@ -15,12 +15,12 @@ EXPOSE 22
 # network for demo node app
 EXPOSE 8080
 
-# get the password for the soon to create user "me".
-#   can be passed in on the docker build command line with:
+# get the password for the soon to be created user "me".
+#   It is passed in on the docker build command line with:
 #     --build-arg my_password="this_is_my_super_secret_password"
 ARG my_password
 
-# install and configure sshd
+# install and configure sshd and sudo
 RUN apk add --update --no-cache openssh sudo \
     && echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel \
     && echo -e "LogLevel INFO" >> /etc/ssh/sshd_config \
@@ -42,7 +42,7 @@ COPY entrypoint.sh /
 COPY nodetest.js /
 
 # copy in my public key and set it as the only authorised key
-COPY myPublicKey /home/me/.ssh/authorized_keys
+COPY authorized_keys /home/me/.ssh/authorized_keys
 
 # set the correct permissions for the public key file
 RUN chown me:me /home/me/.ssh/authorized_keys \

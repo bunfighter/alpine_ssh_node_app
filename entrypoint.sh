@@ -2,7 +2,7 @@
 
 # this script is set in the ENTRYPOINT of the Dockerfile
 
-# Generate all the ssh keys
+# Generate the ssh keys
 ssh-keygen -A
 
 # Start the sshd for the win
